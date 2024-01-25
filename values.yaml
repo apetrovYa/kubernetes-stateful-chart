@@ -169,10 +169,10 @@ revisionHistoryLimit: 10
 ## @param updateStrategy.properties.partition Specify the ordinal at which the StatefulSet should be partitioned for updates. During a rolling update, all pods from ordinal Replicas-1 to Partition are updated. All pods from ordinal Partition-1 to 0 remain untouched. This is helpful in being able to do a canary-based deployment
 ##
 updateStrategy:
-    type: RollingUpdate
-    properties:
-        maxUnavailable: 1
-        partition: 0
+  type: RollingUpdate
+  properties:
+      maxUnavailable: 1
+      partition: 0
 ## @param podLabels Specify labels to apply at PodSpec level
 ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
 ##
