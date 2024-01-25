@@ -799,3 +799,57 @@ tests:
               path: "/overwriten"
               port: "overwriten"
     template: statefulset/manifest.yaml
+  - it: should allow to specify volumeClaims
+    set:
+      volumeClaims:
+        - mountDetails:
+            path: /usr/share/app/data
+          metadata:
+            name: data
+          properties:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 1Gi
+      additionalVolumeClaims:
+        - mountDetails:
+            path: /usr/share/app/data-2
+          metadata:
+            name: data-2
+          properties:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 1Gi
+
+    asserts:
+      - isNotNull:
+          path: spec.volumeClaimTemplates
+      - lengthEqual:
+          path: spec.volumeClaimTemplates
+          count: 2
+      - isSubset:
+          path: spec.volumeClaimTemplates[0]
+          content:
+              metadata:
+                name: data
+              properties:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 1Gi
+      - isSubset:
+          path: spec.volumeClaimTemplates[1]
+          content:
+              metadata:
+                name: data-2
+              properties:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 1Gi
+    template: statefulset/manifest.yaml
