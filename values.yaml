@@ -515,16 +515,7 @@ additionalVolumes: []
 ##        resources:
 ##          requests:
 ##            storage: 1Gi
-volumeClaims:
-    - mountDetails:
-        path: /usr/share/app/data
-      metadata:
-        name: main-data
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        resources:
-          requests:
-            storage: 1Gi
+volumeClaims: []
 ## @param additionalVolumeClaims
 ##
 additionalVolumeClaims: []

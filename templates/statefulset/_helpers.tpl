@@ -108,8 +108,11 @@ Return a list of volumeMounts from any volumeClaims available.
 {{- $volumeClaims := concat .Values.volumeClaims .Values.additionalVolumeClaims -}}
 {{- $volumeMounts := list -}}
 {{- range $v := $volumeClaims -}}
-{{- $newDict := pick $v "mountDetails" "metadata" }}
-{{- $volumeMounts := concat $volumeMounts (list ( dict "name" ( get $newDict "metadata.name") "mountPath" (get $newDict "mountDetails.path" ))) -}}
+{{- $mountDetails := get $v "mountDetails" }}
+{{- $metadata := get $v "metadata" }}
+{{- $tObj := dict "name" $metadata.name "mountPath" $mountDetails.path }}
+{{- $tList := list $tObj }}
+{{- $volumeMounts = concat $volumeMounts $tList }}
 {{- end -}}
 {{- if $volumeMounts }}
 {{- $volumeMounts | toYaml }}

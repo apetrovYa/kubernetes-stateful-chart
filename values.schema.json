@@ -667,6 +667,18 @@
             "default": [],
             "items": {}
         },
+        "volumeClaims": {
+            "type": "array",
+            "description": "Specify a list of volume claims to be attached to the pod",
+            "default": [],
+            "items": {}
+        },
+        "additionalVolumeClaims": {
+            "type": "array",
+            "description": "",
+            "default": [],
+            "items": {}
+        },
         "sidecars": {
             "type": "array",
             "description": "Specify containers to run alongside the main container",

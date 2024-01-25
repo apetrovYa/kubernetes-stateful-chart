@@ -246,7 +246,6 @@ spec:
           - name
           */}}
           volumeMounts:
-            {{- include "app.volumeMountsFromVolumeClaims" . | nindent 12 }}
             {{- if and .Values.defaultConfig.mountPath .Values.defaultConfig.name }}
             {{- if and .Values.defaultConfig.mountPath .Values.defaultConfig.name }}
             - mountPath: {{ .Values.defaultConfig.mountPath | quote }}
@@ -261,6 +260,7 @@ spec:
               {{- $volumeMount.volumeMountProperties | toYaml | nindent 14 }}
             {{- end }}
             {{- end }}
+            {{- include "app.volumeMountsFromVolumeClaims" . | nindent 12 }}
         {{- if $sidecars }}
         {{/*
             List of containers belonging to the pod.
