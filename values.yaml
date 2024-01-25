@@ -171,8 +171,8 @@ revisionHistoryLimit: 10
 updateStrategy:
   type: RollingUpdate
   properties:
-      maxUnavailable: 1
-      partition: 0
+    maxUnavailable: 1
+    partition: 0
 ## @param podLabels Specify labels to apply at PodSpec level
 ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
 ##
